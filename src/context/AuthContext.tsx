@@ -66,6 +66,7 @@ export function AuthProvider({children}: any) {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
+            setLoading(false)
 
             // if (!user) {
             //     navigate('/login')
