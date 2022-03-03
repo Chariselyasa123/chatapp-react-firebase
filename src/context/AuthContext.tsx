@@ -66,11 +66,11 @@ export function AuthProvider({children}: any) {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
-            setLoading(false)
 
-            // if (!user) {
-            //     navigate('/login')
-            // }
+            if (!user) {
+                setLoading(false)
+                navigate('/login')
+            }
 
             // get firestore user data
             if (user) {
