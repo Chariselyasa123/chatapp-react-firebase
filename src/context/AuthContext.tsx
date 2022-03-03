@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react"
-import { auth, firebase, db } from '../lib/firebase'
-import { useNavigate } from 'react-router-dom';
-const { themeChange } = require('theme-change');
+import React, {useContext, useEffect, useState} from "react"
+import {auth, firebase, db} from '../lib/firebase'
+import {useNavigate} from 'react-router-dom';
+
+const {themeChange} = require('theme-change');
 
 interface IAuthContext {
     currentUser: any
@@ -19,7 +20,7 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }: any) {
+export function AuthProvider({children}: any) {
 
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
@@ -66,14 +67,14 @@ export function AuthProvider({ children }: any) {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
 
-            if (!user) {
-                navigate('/login')
-            }
+            // if (!user) {
+            //     navigate('/login')
+            // }
 
             // get firestore user data
             if (user) {
                 const response = await db.collection('users').doc(user.uid).get()
-                let merged = { ...user._delegate, ...response.data() }
+                let merged = {...user._delegate, ...response.data()}
                 setCurrentUser(merged)
                 setLoading(false)
             }

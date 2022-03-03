@@ -5,11 +5,11 @@ import Home from './components/Home';
 function App() {
     return (
         <Router>
-            {/*<AuthProvider>*/}
-            <Routes>
-                <Route path='/' element={<Home/>}/>
-            </Routes>
-            {/*</AuthProvider>*/}
+            <AuthProvider>
+                <Routes>
+                    <Route path='/' element={<Home/>}/>
+                </Routes>
+            </AuthProvider>
         </Router>
     )
 }
